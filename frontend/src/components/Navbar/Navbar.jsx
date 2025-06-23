@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { handleSuccess } from "../../utils";
 import "./Navbar.css";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
@@ -13,8 +13,10 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState("");
   const [role, setRole] = useState("");
-  const {searchTerm, setSearchTerm} = useSearch();
+  const { searchTerm, setSearchTerm } = useSearch();
 
+  const location = useLocation();
+  const isHomePage = location.pathname === "/home";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -56,14 +58,17 @@ const Navbar = () => {
         {siteSettings?.siteName || "ShopSwift"}
       </Link>
       <ul className="navbar-links">
-        <div className="search-filter-bar">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        {isHomePage && (
+          <div className="search-filter-bar">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        )}
+
         {isLoggedIn && (
           <li className="user-dropdown" ref={dropdownRef}>
             <span
