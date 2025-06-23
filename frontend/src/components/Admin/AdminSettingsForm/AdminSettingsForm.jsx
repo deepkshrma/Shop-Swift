@@ -1,6 +1,7 @@
 import "./AdminSettingsForm.css";
-
 import React, { useEffect, useState } from "react";
+
+const BASE_URL = "http://localhost:8080/";
 
 const AdminSettingsPage = () => {
   const [settings, setSettings] = useState({
@@ -12,13 +13,15 @@ const AdminSettingsPage = () => {
     footerAddress: "",
     footerPhone: "",
     footerCopyright: "",
+    logo: "",
+    aboutImage: "",
   });
 
   const [logoFile, setLogoFile] = useState(null);
   const [aboutImageFile, setAboutImageFile] = useState(null);
   const [heroImageFile, setheroImageFile] = useState(null);
   const [loginImageFile, setloginImageFile] = useState(null);
-  // ✅ Fetch existing settings on load
+
   useEffect(() => {
     fetch("http://localhost:8080/settings")
       .then((res) => res.json())
@@ -29,7 +32,6 @@ const AdminSettingsPage = () => {
       });
   }, []);
 
-  // ✅ Handle form field changes
   const handleChange = (e) => {
     setSettings({ ...settings, [e.target.name]: e.target.value });
   };
@@ -42,7 +44,6 @@ const AdminSettingsPage = () => {
     if (name === "loginImage") setloginImageFile(files[0]);
   };
 
-  // ✅ Submit updated settings
   const handleSave = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -74,6 +75,7 @@ const AdminSettingsPage = () => {
           onChange={handleChange}
           placeholder="Site Name"
         />
+
         <h4>Dest.</h4>
         <input
           name="heroText"
@@ -81,6 +83,7 @@ const AdminSettingsPage = () => {
           onChange={handleChange}
           placeholder="Hero Text"
         />
+
         <h4>Email</h4>
         <input
           name="footerEmail"
@@ -88,6 +91,7 @@ const AdminSettingsPage = () => {
           onChange={handleChange}
           placeholder="Footer Email"
         />
+
         <h4>Phone</h4>
         <input
           name="footerPhone"
@@ -103,6 +107,7 @@ const AdminSettingsPage = () => {
           onChange={handleChange}
           placeholder="Footer Address"
         />
+
         <h4>Footer Copyright</h4>
         <input
           name="footerCopyright"
@@ -110,27 +115,49 @@ const AdminSettingsPage = () => {
           onChange={handleChange}
           placeholder="Footer Copyright"
         />
-        <h4>Page Logo</h4>
+
         <div>
           <label>Logo:</label>
+          {settings.logo && (
+            <div className="image-preview">
+              <img src={`http://localhost:8080${settings.logo}`} alt="Logo" width="120" />
+            </div>
+          )}
           <input type="file" name="logo" onChange={handleFileChange} />
         </div>
-        <h4>Hero Image </h4>
+
         <div>
-          <label>Hero Image</label>
+          <label>Hero Image:</label>
+          {settings.heroImage && (
+            <div className="image-preview">
+              <img src={`http://localhost:8080${settings.heroImage}`} alt="Hero" width="150" />
+            </div>
+          )}
           <input type="file" name="heroImage" onChange={handleFileChange} />
         </div>
-        <h4>Login Image</h4>
+
+
         <div>
-          <label>Login Image</label>
+          <label>Login Image:</label>
+          {settings.loginImage && (
+            <div className="image-preview">
+              <img src={`http://localhost:8080${settings.loginImage}`} alt="Login" width="150" />
+            </div>
+          )}
           <input type="file" name="loginImage" onChange={handleFileChange} />
         </div>
 
-        <h4>About Page Image </h4>
+
         <div>
           <label>About Page Image:</label>
+          {settings.aboutImage && (
+            <div className="image-preview">
+              <img src={settings.aboutImage} alt="About" width="150" />
+            </div>
+          )}
           <input type="file" name="aboutImage" onChange={handleFileChange} />
         </div>
+
         <button type="submit">Save</button>
       </form>
     </div>

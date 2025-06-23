@@ -91,3 +91,13 @@
   background-color: #2e7031;
   transform: scale(0.95);
 }
+
+.image-preview {
+  margin: 10px 0;
+}
+.image-preview img {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 100px;
+  object-fit: contain;
+}

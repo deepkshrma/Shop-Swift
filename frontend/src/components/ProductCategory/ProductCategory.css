@@ -108,8 +108,8 @@
   transition: background-color 0.3s ease;
 }
 .product-card button:hover {
-  color: #fff;
-  background-color: #0a9b3f;
+  color: #150e0e;
+  background-color: rgb(229, 167, 32);
   
 }
 .product-card button:active{
@@ -134,7 +134,23 @@
   -webkit-background-clip: text;      /* ✅ WebKit (Safari, Chrome) */
   color: transparent;                 /* ✅ Make text see-through */
   -webkit-text-fill-color: transparent;
-  animation: gradient-move 8s linear infinite, scroll-left-right 8s linear infinite;
+  /* animation: gradient-move 8s linear infinite, scroll-left-right 8s linear infinite; */
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.3);
+}
+.whatsapp-float:active {
+  transform: scale(0.95);
 }
 
 @keyframes gradient-move {

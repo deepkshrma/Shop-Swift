@@ -19,7 +19,7 @@
 }
 
 .go-back-btn1:hover {
-  background-color: #00b330;
+  background-color: rgb(229, 167, 32);
   transform: scale(1.05);
 }
 
@@ -96,6 +96,26 @@
   color: #f8f8f8;
 }
 
+.qty-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.qty-control button {
+  padding: 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.qty-control span {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
 
 .cart-summary {
   display: flex;
@@ -108,7 +128,7 @@
 }
 
 .go-back-btn {
-  background-color: #4caf50;
+  background-color: rgb(229, 167, 32);
   color: white;
   padding: 10px 20px;
   margin-right: 10px;
@@ -123,6 +143,7 @@
 .go-back-btn:hover {
   background-color: #698f17;
   transform: scale(1.05);
+  color: #333;
 }
 .go-back-btn:active {
   
@@ -141,7 +162,7 @@
 }
 
 .checkoutdetail button {
-  background-color: #4caf50;
+  background-color: rgb(229, 167, 32);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -153,8 +174,9 @@
 }
 
 .checkoutdetail button:hover {
-  background-color: #388e3c;
+  background-color: rgb(229, 167, 32);
   transform: scale(1.05);
+  color: #333;
 }
 
 .checkoutdetail button:active {

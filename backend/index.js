@@ -9,6 +9,9 @@ const path = require("path");
 const AdminRouter = require("./Routes/AdminRouter")
 const CartRouter = require('./Routes/CartRouter');
 const settingsRoutes = require('./Routes/settingsRoutes');
+const addressRoutes = require('./Routes/addressRoutes')
+const orderRoutes = require('./Routes/orderRoutes')
+
 require('dotenv').config();
 require('./Config/db');
 
@@ -24,6 +27,9 @@ app.use('/users', UserRouter);
 app.use("/admin", AdminRouter);
 app.use('/cart', CartRouter);
 app.use('/settings', settingsRoutes);
+app.use('/orders',orderRoutes);
+app.use('/address',addressRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`)

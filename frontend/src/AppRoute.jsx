@@ -5,8 +5,8 @@ const AdminRoute = ({ children }) => {
   const role = localStorage.getItem("role");
 
     
-  console.log("AdminRoute - token:", token);
-  console.log("AdminRoute - role:", role);
+  // console.log("AdminRoute - token:", token);
+  // console.log("AdminRoute - role:", role);
   
   if ( role !== "admin") {
     return <Navigate to="/" />;

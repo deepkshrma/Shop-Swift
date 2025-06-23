@@ -33,7 +33,7 @@
 .go-home-btn {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #2e7d32;
+  background-color: rgb(229, 167, 32);
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -43,10 +43,10 @@
 
 .go-home-btn:hover {
   background-color: #3eb8c3;
-  transform: scale(1.06);
+  transform: scale(1.05);
 
 }
 .go-home-btn:active {
   transform: scale(0.93);
-  background-color: rgb(98, 139, 1);
+  background-color: rgb(229, 167, 32);
 }

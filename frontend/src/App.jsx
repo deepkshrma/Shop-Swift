@@ -18,7 +18,12 @@ import Aboutus from "./pages/Aboutus/Aboutus";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import CartPage from "./context/Cart/Cart";
 import PageNotFound from "./pages/404-ERROR/PageNotFound";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import CheckoutSuccess from "./pages/CheckoutSuccess/CheckoutSuccess";
+import MyAddressesPage from "./pages/MyAddressesPage/MyAddressesPage";
+import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage";
+import AdminOrdersPage from "./components/Admin/AdminOrderPage/AdminOrderPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,9 +43,12 @@ function App() {
         <Route path="/Aboutus" element={<Aboutus />} />
         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/CheckoutPage" element={<CheckoutPage />} />
+        <Route path="/PaymentPage" element={<PaymentPage />} />
         <Route path="/CheckoutSuccess" element={<CheckoutSuccess />} />
+        <Route path="/MyAddressesPage" element={<MyAddressesPage />} />
+        <Route path="/MyOrdersPage" element={<MyOrdersPage />} />
         <Route path="*" element={<PageNotFound />} />
-        
 
         {/* Admin Route   */}
 
@@ -70,7 +78,14 @@ function App() {
             </AdminRoute>
           }
         />
-
+        <Route
+          path="/admin/orders"
+          element={
+            <AdminRoute>
+              <AdminOrdersPage />
+            </AdminRoute>
+          }
+        />
         <Route
           path="/admin/users"
           element={

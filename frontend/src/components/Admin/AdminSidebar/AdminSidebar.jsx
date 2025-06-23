@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { handleError, handleSuccess } from "../../../utils";
 import {  useNavigate } from "react-router-dom";
-import React from "react";
 import { Link } from "react-router-dom";
-import "./AdminSidebar.css"; // You can style it your way
+import "./AdminSidebar.css";
 
 const AdminSidebar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +36,9 @@ const AdminSidebar = () => {
         </li>
         <li>
           <Link to="/admin/users">Users</Link>
+        </li>
+        <li>
+          <Link to="/admin/orders">Manage Orders</Link>
         </li>
         { <li><Link to="/">Go to Website</Link></li> }
         <li>

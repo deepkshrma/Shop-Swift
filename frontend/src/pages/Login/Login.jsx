@@ -55,7 +55,6 @@ function Login() {
           } else {
             Navigate("/home"); // Redirect user
           }
-          
         }, 1000);
       } else if (!response.ok || !success) {
         console.error("Login failed:", result);
@@ -94,6 +93,7 @@ function Login() {
                   type="email"
                   name="email"
                   placeholder="Enter Your Email..."
+                  autoComplete="username"
                   value={LoginInfo.email}
                 />
                 <label htmlFor="password">Password</label>
@@ -102,6 +102,7 @@ function Login() {
                   type="password"
                   name="password"
                   placeholder="Enter Your Password..."
+                  autoComplete="current-password"
                   value={LoginInfo.password}
                 />
               </div>

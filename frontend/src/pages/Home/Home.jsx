@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { handleError, handleSuccess } from "../../utils";
+import { handleError } from "../../utils";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Home.css";
 import ProductCategory from "../../components/ProductCategory/ProductCategory";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
+import { useSearch } from "../../context/SearchContext";
 
 function Home() {
   const settings = useSiteSettings();
   const [products, setProducts] = useState([]);
+  const { searchTerm } = useSearch();
+
   const fetchProducts = async () => {
     try {
       const url = "http://localhost:8080/products";
@@ -22,9 +24,8 @@ function Home() {
       const response = await fetch(url, headers);
       const result = await response.json();
 
-      // console.log("Fetched Products:", result);
       if (result.success) {
-        setProducts(result.products); // result.products is an array
+        setProducts(result.products);
       } else {
         console.log("No products found or unauthorized");
       }
@@ -37,6 +38,10 @@ function Home() {
     fetchProducts();
   }, []);
 
+  const filteredProducts = products.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <Navbar />
@@ -46,11 +51,12 @@ function Home() {
             <img
               src={`http://localhost:8080${settings.heroImage}`}
               alt="Hero"
-              style={{ width: "100%", height: "70vh", objectFit: "cover" }}
+              style={{ width: "100%", height: "70vh", objectFit: "fill" }}
             />
           )}
         </div>
-        <ProductCategory products={products} />
+
+        <ProductCategory products={filteredProducts} />
 
         <ToastContainer />
       </div>

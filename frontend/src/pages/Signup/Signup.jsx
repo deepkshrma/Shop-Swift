@@ -73,8 +73,13 @@ function Signup() {
       <div className="signup-wrapper">
         <div className="signup-container">
           <div className="signup-image">
-            <img src={`http://localhost:8080${settings.loginImage}`} alt="Signup" />
-          </div>
+             {settings?.loginImage && (
+              <img
+                src={`http://localhost:8080${settings.loginImage}`}
+                alt="signup"
+              />
+            )}
+            </div>
           <div className="signup-form">
             <h1>Sign Up</h1>
             <form onSubmit={handleSignup}>

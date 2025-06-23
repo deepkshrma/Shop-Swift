@@ -7,7 +7,7 @@ import { handleError, handleSuccess } from "../../../utils";
 const AddProductForm = () => {
   const [product, setProduct] = useState({
     name: "",
-    category: "gents", // backend uses lowercase
+    category: "gents",
     price: "",
     stock: "",
     image: null,
@@ -44,13 +44,13 @@ const AddProductForm = () => {
 
       const result = await response.json();
       if (result.success) {
-        handleSuccess("✅ Product added successfully!");
+        handleSuccess("Product added successfully!");
       } else {
-        handleError("❌ Failed to add product.");
+        handleError("Failed to add product.");
       }
     } catch (error) {
       console.error("Add product error:", error);
-      handleError("❌ Server error.");
+      handleError("Server error.");
     }
   };
 

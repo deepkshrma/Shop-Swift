@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import {  handleError, popup } from "../../utils";
+import { handleError, popup } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
 const CartContext = createContext();
@@ -59,91 +59,94 @@ export const CartProvider = ({ children }) => {
       } else {
         popup("Item added");
         await fetchCart(); // ✅ update UI
-        
       }
     } catch (err) {
       console.error("Add to cart error:", err.message);
     }
   };
 
-const updateQuantity = async (productId, quantity) => {
-  try {
-    const token = localStorage.getItem("token");
-    // console.log("🛠️ Sending PUT with token:", token);
+  const updateQuantity = async (productId, quantity) => {
+    try {
+      const token = localStorage.getItem("token");
+      // console.log("🛠️ Sending PUT with token:", token);
 
-    const res = await fetch(`http://localhost:8080/cart/update/${productId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ quantity }),
-    });
-
-    const data = await res.json();
-    // console.log("🛠️ Response:", data);
-
-    fetchCart();
-  } catch (err) {
-    console.error("❌ updateQuantity error:", err);
-  }
-};
-
-const removeItem = async (productId) => {
-  try {
-    const token = localStorage.getItem("token");
-    // console.log("🧹 Sending DELETE with token:", token);
-
-    const res = await fetch(`http://localhost:8080/cart/remove/${productId}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const data = await res.json();
-    // console.log("🧹 Response:", data);
-
-    if (data.success) {
-      // 👇 Update UI immediately without needing full refetch
-      setCartItems((prev) =>
-        prev.filter((item) => item.productId !== productId)
+      const res = await fetch(
+        `http://localhost:8080/cart/update/${productId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ quantity }),
+        }
       );
+
+      const data = await res.json();
+      // console.log("🛠️ Response:", data);
+
+      fetchCart();
+    } catch (err) {
+      console.error("❌ updateQuantity error:", err);
     }
-  } catch (err) {
-    handleError("❌ removeItem error:");
-  }
-};
+  };
 
+  const removeItem = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+      // console.log("🧹 Sending DELETE with token:", token);
 
-const checkout = async () => {
-  try {
-    const token = localStorage.getItem("token");
+      const res = await fetch(
+        `http://localhost:8080/cart/remove/${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    const res = await fetch("http://localhost:8080/cart/checkout", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+      const data = await res.json();
+      // console.log("🧹 Response:", data);
 
-    const data = await res.json();
+      if (data.success) {
+        // 👇 Update UI immediately without needing full refetch
+        setCartItems((prev) =>
+          prev.filter((item) => item.productId !== productId)
+        );
+      }
+    } catch (err) {
+      handleError("❌ removeItem error:");
+    }
+  };
 
-    if (!res.ok || !data.success) {
-      console.error("Checkout failed:", data.message || data);
+  const checkout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch("http://localhost:8080/cart/checkout", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        console.error("Checkout failed:", data.message || data);
+        return false;
+      }
+
+      // Empty cart
+      setCartItems([]);
+
+      return true;
+    } catch (err) {
+      console.error("Checkout error:", err);
       return false;
     }
-
-    // Empty cart
-    setCartItems([]);
-
-    return true; // indicate success
-  } catch (err) {
-    console.error("Checkout error:", err);
-    return false;
-  }
-};
-
+  };
 
   return (
     <CartContext.Provider
