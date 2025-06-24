@@ -51,7 +51,7 @@ function Home() {
             <img
               src={`http://localhost:8080${settings.heroImage}`}
               alt="Hero"
-              style={{ width: "100%", height: "70vh", objectFit: "fill" }}
+              style={{ width: "100%", height: "75vh", objectFit: "fill" }}
             />
           )}
         </div>

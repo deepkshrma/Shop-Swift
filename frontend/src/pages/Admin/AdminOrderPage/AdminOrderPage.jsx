@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AdminOrdersPage.css";
-import AdminSidebar from "../AdminSidebar/AdminSidebar";
+import AdminSidebar from "../../../components/Admin/AdminSidebar/AdminSidebar";
 
 const AdminOrdersPage = () => {
   const [ordersByUser, setOrdersByUser] = useState({});

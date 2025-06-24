@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser'); // library to fetch data client to server , its add in middleware 
-const cors = require('cors'); // its allow to request from client to server by different port
+
+const cors = require('cors'); 
 const AuthRouter = require('./Routes/AuthRouter');
 const ProductRouter = require('./Routes/ProductRouter');
 const UserRouter = require('./Routes/UserRouter');
@@ -19,7 +20,10 @@ const PORT = process.env.PORT || 8080;
 
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+}));
 app.use('/images', express.static(path.join(__dirname, 'assets/uploads')));
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);

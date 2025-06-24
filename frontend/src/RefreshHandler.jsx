@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function RefreshHandler( { setIsAuthenticated }) {
-    const location = useLocation(); // CHECK LOCATION OF USER
-    const Navigate = useNavigate(); //TO NAVIGATE USER
+    const location = useLocation(); 
+    const Navigate = useNavigate(); 
 
     useEffect(() => {
         if (localStorage.getItem('token')) {

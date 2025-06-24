@@ -75,7 +75,7 @@ function Signup() {
           <div className="signup-image">
              {settings?.loginImage && (
               <img src={`${process.env.REACT_APP_API_URL}${settings.loginImage}`} />
-
+              
             )}
             </div>
           <div className="signup-form">

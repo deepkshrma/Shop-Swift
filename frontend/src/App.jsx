@@ -9,6 +9,7 @@ import Products from "./pages/Admin/Products/Products";
 import AddProduct from "./pages/Admin/AddProduct/AddProduct";
 import Users from "./pages/Admin/Users/Users";
 import AdminSettingsPage from "./pages/Admin/AdminSettingsPage/AdminSettingsPage";
+import AdminOrdersPage from "./pages/Admin/AdminOrderPage/AdminOrderPage";
 
 // users Route
 import Home from "./pages/Home/Home";
@@ -23,7 +24,6 @@ import PaymentPage from "./pages/PaymentPage/PaymentPage";
 import CheckoutSuccess from "./pages/CheckoutSuccess/CheckoutSuccess";
 import MyAddressesPage from "./pages/MyAddressesPage/MyAddressesPage";
 import MyOrdersPage from "./pages/MyOrdersPage/MyOrdersPage";
-import AdminOrdersPage from "./components/Admin/AdminOrderPage/AdminOrderPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

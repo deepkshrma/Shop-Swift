@@ -10,7 +10,7 @@ const Aboutus = () => {
     <div className="aboutus-page">
       <Navbar />     
       <div>     
-        <img src={settings?.aboutImage} alt="About Banner" />
+        <img className="bannerimg" src={settings?.aboutImage} alt="About Banner" />
       </div>
       <div className="aboutus-content">
         <h2>About us ShopSwift</h2>
