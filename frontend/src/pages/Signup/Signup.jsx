@@ -34,7 +34,7 @@ function Signup() {
     }
 
     try {
-      const url = "http://localhost:8080/auth/signup";
+      const url = `${process.env.REACT_APP_API_URL}/auth/signup`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -74,10 +74,8 @@ function Signup() {
         <div className="signup-container">
           <div className="signup-image">
              {settings?.loginImage && (
-              <img
-                src={`http://localhost:8080${settings.loginImage}`}
-                alt="signup"
-              />
+              <img src={`${process.env.REACT_APP_API_URL}${settings.loginImage}`} />
+
             )}
             </div>
           <div className="signup-form">

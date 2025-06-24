@@ -31,7 +31,7 @@ function Login() {
 
     //api call
     try {
-      const url = "http://localhost:8080/auth/login";
+      const url = `${process.env.REACT_APP_API_URL}/auth/login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -77,10 +77,7 @@ function Login() {
         <div className="login-container">
           <div className="login-image">
             {settings?.loginImage && (
-              <img
-                src={`http://localhost:8080${settings.loginImage}`}
-                alt="Login"
-              />
+              <img src={`${process.env.REACT_APP_API_URL}${settings.loginImage}`} />
             )}
           </div>
           <div className="login-form">
