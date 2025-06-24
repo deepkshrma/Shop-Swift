@@ -31,6 +31,10 @@ app.use('/orders',orderRoutes);
 app.use('/address',addressRoutes);
 
 
+app.get("/api/ping", (req, res) => {
+  res.send("pong");
+});
+
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`)
 })
