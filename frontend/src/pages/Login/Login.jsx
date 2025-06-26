@@ -5,14 +5,14 @@ import { handleError, handleSuccess } from "../../utils";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Login.css";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
-
+const baseUrl = process.env.REACT_APP_API_URL; 
 function Login() {
   const [LoginInfo, setLoginInfo] = useState({
     email: "",
     password: "",
   });
   const settings = useSiteSettings();
-  const Navigate = useNavigate(); // after login navigate to home
+  const Navigate = useNavigate(); 
   const handleChange = (e) => {
     const { name, value } = e.target;
     // console.log(name, value);
@@ -31,7 +31,9 @@ function Login() {
 
     //api call
     try {
-      const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+      console.log("Base URL:", process.env.REACT_APP_API_URL);
+
+      const url = `${baseUrl}/auth/login`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -77,7 +79,7 @@ function Login() {
         <div className="login-container">
           <div className="login-image">
             {settings?.loginImage && (
-              <img src={`${process.env.REACT_APP_API_URL}${settings.loginImage}`} />
+              <img src={`${baseUrl}${settings.loginImage}`} />
             )}
           </div>
           <div className="login-form">
