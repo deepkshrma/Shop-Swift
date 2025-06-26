@@ -152,7 +152,7 @@ const AdminSettingsPage = () => {
           <label>About Page Image:</label>
           {settings.aboutImage && (
             <div className="image-preview">
-              <img src={settings.aboutImage} alt="About" width="150" />
+              <img src={`${baseUrl}${settings.aboutImage}`} alt="About" width="150" />
             </div>
           )}
           <input type="file" name="aboutImage" onChange={handleFileChange} />

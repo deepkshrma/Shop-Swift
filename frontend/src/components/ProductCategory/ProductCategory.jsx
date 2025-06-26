@@ -4,8 +4,7 @@ import Footer from "../Footer/Footer";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
 import { useCart } from "../../context/Cart/CartContext";
 
-
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const ProductCategory = ({ products }) => {
   const { addToCart } = useCart();
   const siteSettings = useSiteSettings();
