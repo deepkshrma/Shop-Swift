@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdminOrdersPage.css";
 import AdminSidebar from "../../../components/Admin/AdminSidebar/AdminSidebar";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const AdminOrdersPage = () => {
   const [ordersByUser, setOrdersByUser] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +16,7 @@ const AdminOrdersPage = () => {
   );
 
   useEffect(() => {
-    fetch("http://localhost:8080/admin/orders", {
+    fetch(`${baseUrl}/admin/orders`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

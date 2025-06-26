@@ -1,7 +1,7 @@
 import "./AdminSettingsForm.css";
 import React, { useEffect, useState } from "react";
 
-const BASE_URL = "http://localhost:8080/";
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const AdminSettingsPage = () => {
   const [settings, setSettings] = useState({
@@ -23,7 +23,7 @@ const AdminSettingsPage = () => {
   const [loginImageFile, setloginImageFile] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/settings")
+    fetch(`${baseUrl}/settings`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -53,7 +53,7 @@ const AdminSettingsPage = () => {
     if (heroImageFile) formData.append("heroImage", heroImageFile);
     if (loginImageFile) formData.append("loginImage", loginImageFile);
 
-    await fetch("http://localhost:8080/settings", {
+    await fetch(`${baseUrl}/settings`, {
       method: "PUT",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -120,7 +120,7 @@ const AdminSettingsPage = () => {
           <label>Logo:</label>
           {settings.logo && (
             <div className="image-preview">
-              <img src={`http://localhost:8080${settings.logo}`} alt="Logo" width="120" />
+              <img src={`${baseUrl}${settings.logo}`} alt="Logo" width="120" />
             </div>
           )}
           <input type="file" name="logo" onChange={handleFileChange} />
@@ -130,7 +130,7 @@ const AdminSettingsPage = () => {
           <label>Hero Image:</label>
           {settings.heroImage && (
             <div className="image-preview">
-              <img src={`http://localhost:8080${settings.heroImage}`} alt="Hero" width="150" />
+              <img src={`${baseUrl}${settings.heroImage}`} alt="Hero" width="150" />
             </div>
           )}
           <input type="file" name="heroImage" onChange={handleFileChange} />
@@ -141,7 +141,7 @@ const AdminSettingsPage = () => {
           <label>Login Image:</label>
           {settings.loginImage && (
             <div className="image-preview">
-              <img src={`http://localhost:8080${settings.loginImage}`} alt="Login" width="150" />
+              <img src={`${baseUrl}${settings.loginImage}`} alt="Login" width="150" />
             </div>
           )}
           <input type="file" name="loginImage" onChange={handleFileChange} />

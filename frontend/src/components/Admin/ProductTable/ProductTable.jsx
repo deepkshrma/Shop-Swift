@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProductTable.css";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const ProductTable = () => {
   const [products, setProducts] = useState([]);
   const [editProduct, setEditProduct] = useState(null);
@@ -9,7 +9,7 @@ const ProductTable = () => {
 
   // Fetch all products on mount
   useEffect(() => {
-    fetch("http://localhost:8080/products", {
+    fetch(`${baseUrl}/products`, {
       headers: { Authorization: localStorage.getItem("token") },
     })
       .then((res) => res.json())
@@ -22,7 +22,7 @@ const ProductTable = () => {
   // Handle delete product
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      fetch(`http://localhost:8080/products/delete/${id}`, {
+      fetch(`${baseUrl}/products/delete/${id}`, {
         method: "DELETE",
         headers: { Authorization: localStorage.getItem("token") },
       })
@@ -55,7 +55,7 @@ const ProductTable = () => {
       formData.append("image", imageFile);
     }
 
-    const response = await fetch(`http://localhost:8080/products/update/${editProduct._id}`, {
+    const response = await fetch(`${baseUrl}/products/update/${editProduct._id}`, {
       method: "PUT",
       headers: {
         Authorization: localStorage.getItem("token"),
@@ -65,10 +65,10 @@ const ProductTable = () => {
 
     const result = await response.json();
     if (result.success) {
-      alert("✅ Product updated successfully!");
+      alert(" Product updated successfully!");
       setEditProduct(null);
       // Refresh list
-      const refreshed = await fetch("http://localhost:8080/products", {
+      const refreshed = await fetch(`${baseUrl}/products`, {
         headers: { Authorization: localStorage.getItem("token") },
       });
       const refreshedData = await refreshed.json();

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./MyOrdersPage.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const MyOrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,7 @@ const MyOrdersPage = () => {
   const fetchOrders = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch("http://localhost:8080/orders", {
+      const res = await fetch(`${baseUrl}/orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

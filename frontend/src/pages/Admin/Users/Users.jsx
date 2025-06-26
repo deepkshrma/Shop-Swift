@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import AdminSidebar from "../../../components/Admin/AdminSidebar/AdminSidebar";
 import './Users.css'
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const Users = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:8080/users", {
+        const response = await fetch(`${baseUrl}/users`, {
           headers: {
             Authorization: localStorage.getItem("token"),
           },

@@ -7,6 +7,7 @@ import ProductCategory from "../../components/ProductCategory/ProductCategory";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
 import { useSearch } from "../../context/SearchContext";
 
+const baseUrl = import.meta.env.VITE_API_URL;
 function Home() {
   const settings = useSiteSettings();
   const [products, setProducts] = useState([]);
@@ -14,7 +15,7 @@ function Home() {
 
   const fetchProducts = async () => {
     try {
-      const url = "http://localhost:8080/products";
+      const url = `${baseUrl}/products`;
       const headers = {
         headers: {
           Authorization: localStorage.getItem("token"),
@@ -49,7 +50,7 @@ function Home() {
         <div className="home-banner">
           {settings?.heroImage && (
             <img
-              src={`http://localhost:8080${settings.heroImage}`}
+              src={`${baseUrl}${settings.heroImage}`}
               alt="Hero"
               style={{ width: "100%", height: "75vh", objectFit: "fill" }}
             />

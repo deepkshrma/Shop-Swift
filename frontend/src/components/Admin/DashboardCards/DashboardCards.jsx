@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./DashboardCards.css";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const DashboardCards = () => {
   const [counts, setCounts] = useState({
     products: 0,
@@ -11,7 +11,7 @@ const DashboardCards = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const res = await fetch("http://localhost:8080/admin/stats", {
+        const res = await fetch(`${baseUrl}/admin/stats`, {
           headers: {
             Authorization: localStorage.getItem("token"),
           },

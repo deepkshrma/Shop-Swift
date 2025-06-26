@@ -3,6 +3,8 @@ import { ToastContainer } from "react-toastify";
 import { handleError, popup } from "../../utils";
 import { useNavigate } from "react-router-dom";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 const CartContext = createContext();
 export const useCart = () => useContext(CartContext);
 
@@ -13,9 +15,9 @@ export const CartProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:8080/cart", {
+      const res = await fetch(`${baseUrl}/cart`, {
         headers: {
-          Authorization: `Bearer ${token}`, // ✅ fix here
+          Authorization: `Bearer ${token}`
         },
       });
 
@@ -37,7 +39,7 @@ export const CartProvider = ({ children }) => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:8080/cart/add", {
+      const res = await fetch(`${baseUrl}/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +73,7 @@ export const CartProvider = ({ children }) => {
       // console.log("🛠️ Sending PUT with token:", token);
 
       const res = await fetch(
-        `http://localhost:8080/cart/update/${productId}`,
+        `${baseUrl}/cart/update/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -97,7 +99,7 @@ export const CartProvider = ({ children }) => {
       // console.log("🧹 Sending DELETE with token:", token);
 
       const res = await fetch(
-        `http://localhost:8080/cart/remove/${productId}`,
+        `${baseUrl}/cart/remove/${productId}`,
         {
           method: "DELETE",
           headers: {
@@ -124,7 +126,7 @@ export const CartProvider = ({ children }) => {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:8080/cart/checkout", {
+      const res = await fetch(`${baseUrl}/cart/checkout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

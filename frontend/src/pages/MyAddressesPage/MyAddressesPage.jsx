@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./MyAddresses.css";
 import Navbar from "../../components/Navbar/Navbar";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const MyAddressesPage = () => {
   const [addresses, setAddresses] = useState([]);
   const [showNewAddressInput, setShowNewAddressInput] = useState(false);
@@ -18,7 +18,7 @@ const MyAddressesPage = () => {
 
   const fetchAddresses = async () => {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:8080/address", {
+    const res = await fetch(`${baseUrl}/address`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -29,7 +29,7 @@ const MyAddressesPage = () => {
 
   const deleteAddress = async (id) => {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:8080/address/${id}`, {
+    const res = await fetch(`${baseUrl}/address/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ const MyAddressesPage = () => {
   const handleAddAddress = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:8080/address", {
+    const res = await fetch(`${baseUrl}/address`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

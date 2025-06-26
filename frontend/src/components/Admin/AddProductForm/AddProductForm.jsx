@@ -3,7 +3,7 @@ import "./AddProductForm.css";
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../../utils";
 
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const AddProductForm = () => {
   const [product, setProduct] = useState({
     name: "",
@@ -34,7 +34,7 @@ const AddProductForm = () => {
       formData.append("stock", product.stock);
       formData.append("image", image); // for multer
 
-      const response = await fetch("http://localhost:8080/products/add", {
+      const response = await fetch(`${baseUrl}/products/add`, {
         method: "POST",
         headers: {
           Authorization: localStorage.getItem("token"),

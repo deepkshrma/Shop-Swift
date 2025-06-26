@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/Cart/CartContext";
 import Navbar from "../../components/Navbar/Navbar";
 import "./CheckoutPage.css";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const CheckoutPage = () => {
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -25,7 +25,7 @@ const CheckoutPage = () => {
   useEffect(() => {
     const fetchAddresses = async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:8080/address", {
+      const res = await fetch(`${baseUrl}/address`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -37,7 +37,7 @@ const CheckoutPage = () => {
   const handleAddAddress = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:8080/address", {
+    const res = await fetch(`${baseUrl}/address`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

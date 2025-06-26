@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const SiteSettingsContext = createContext();
 export const useSiteSettings = () => useContext(SiteSettingsContext);
 
@@ -8,7 +8,7 @@ export const SiteSettingsProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchSettings = async () => {
-      const res = await fetch("http://localhost:8080/settings");
+      const res = await fetch(`${baseUrl}/settings`);
       const data = await res.json();
       if (data.success) {
         setSettings(data.settings);

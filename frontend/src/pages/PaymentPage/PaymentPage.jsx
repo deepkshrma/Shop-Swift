@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import "./PaymentPage.css";
 
-
+const baseUrl = import.meta.env.VITE_API_URL;
 const PaymentPage = () => {
   const { cartItems ,checkout} = useCart();
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -26,7 +26,7 @@ const PaymentPage = () => {
     // Fetch address details from backend
     const fetchAddress = async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:8080/address`, {
+      const res = await fetch(`${baseUrl}/address`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -41,7 +41,7 @@ const PaymentPage = () => {
   const handlePayment = async () => {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:8080/orders", {
+    const res = await fetch(`${baseUrl}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
