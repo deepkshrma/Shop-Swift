@@ -6,6 +6,8 @@ import "./Signup.css";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
 import Navbar from "../../components/Navbar/Navbar";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 function Signup() {
   const settings = useSiteSettings();
   const [signupInfo, setSignupInfo] = useState({
@@ -34,7 +36,7 @@ function Signup() {
     }
 
     try {
-      const url = `${process.env.REACT_APP_API_URL}/auth/signup`;
+      const url = `${baseUrl}/auth/signup`;
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -74,7 +76,7 @@ function Signup() {
         <div className="signup-container">
           <div className="signup-image">
              {settings?.loginImage && (
-              <img src={`${process.env.REACT_APP_API_URL}${settings.loginImage}`} />
+              <img src={`${baseUrl}${settings.loginImage}`} />
               
             )}
             </div>

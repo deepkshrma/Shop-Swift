@@ -5,7 +5,8 @@ import { handleError, handleSuccess } from "../../utils";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Login.css";
 import { useSiteSettings } from "../../context/SiteSettings/SiteSettingsContext";
-const baseUrl = process.env.REACT_APP_API_URL; 
+
+const baseUrl = import.meta.env.VITE_API_URL; 
 function Login() {
   const [LoginInfo, setLoginInfo] = useState({
     email: "",
@@ -31,7 +32,8 @@ function Login() {
 
     //api call
     try {
-      console.log("Base URL:", process.env.REACT_APP_API_URL);
+      console.log("Calling backend at:", baseUrl);
+
 
       const url = `${baseUrl}/auth/login`;
       const response = await fetch(url, {
